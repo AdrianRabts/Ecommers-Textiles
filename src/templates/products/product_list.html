@@ -1,69 +1,76 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Productos</title>
-    {% load static %} <!-- Cargar la etiqueta estática -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}"> <!-- Enlace a CSS -->
+    {% load static %}
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
 </head>
-<body>
+
+<body class="bg-gray-50">
     <!-- Barra de navegación -->
     <header>
-        <nav class="navbar">
-            <div class="logo">
+        <nav class="navbar bg-blue-900 text-white py-4">
+            <div class="logo ml-5 text-2xl font-bold">
                 <a href="/">Mi Tienda Online</a>
             </div>
-            <ul class="navbar-menu">
-                <li><a href="/">Inicio</a></li>
-                <li><a href="/productos/">Productos</a></li>
-                <li><a href="/carrito/">Carrito</a></li>
-                <li><a href="/contacto/">Contacto</a></li>
+            <ul class="navbar-menu flex space-x-6 ml-5">
+                <li><a href="/" class="hover:text-gray-300">Inicio</a></li>
+                <li><a href="/productos/" class="hover:text-gray-300">Productos</a></li>
+                <li><a href="/carrito/" class="hover:text-gray-300">Carrito</a></li>
+                <li><a href="/contacto/" class="hover:text-gray-300">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Filtro de productos -->
-    <section class="filters">
-        <div class="search">
-            <label for="search">Buscar productos:</label>
-            <input type="text" id="search" placeholder="Buscar productos...">
+    <!-- Filtro y Categorías -->
+    <section class="filters flex justify-between p-6">
+        <div class="search flex flex-col w-2/5">
+            <label for="search" class="text-lg">Buscar productos:</label>
+            <input type="text" id="search" placeholder="Buscar productos..." class="mt-2 p-2 border border-gray-300 rounded-md">
         </div>
-        <div class="categories">
-            <h3>Categorías</h3>
-            <ul>
-                <li><a href="#">Ropa</a></li>
-                <li><a href="#">Tecnología</a></li>
-                <li><a href="#">Accesorios</a></li>
-                <li><a href="#">Hogar</a></li>
+        <div class="categories w-2/5">
+            <h3 class="text-lg font-semibold">Categorías</h3>
+            <ul class="list-none mt-2">
+                <li><a href="#" class="text-blue-600 hover:underline">Sábanas</a></li>
+                <li><a href="#" class="text-blue-600 hover:underline">Toallas</a></li>
+                <li><a href="#" class="text-blue-600 hover:underline">Colores Llanos</a></li>
             </ul>
         </div>
     </section>
 
     <!-- Lista de productos -->
-    <section class="product-list">
-        <h2>Productos Disponibles</h2>
-        <div class="products-container">
+    <section class="product-list text-center py-12">
+        <h2 class="text-3xl font-bold mb-8">Productos Disponibles</h2>
+        <div class="products-container grid grid-cols-3 gap-8">
             {% for product in products %}
-                <div class="product-card">
-                    <img src="{% static 'images/product1.jpg' %}" alt="{{ product.name }}" class="product-image">
-                    <h3>{{ product.name }}</h3>
-                    <p class="product-description">{{ product.description }}</p>
-                    <span class="product-price">${{ product.price }}</span>
-                    <button class="add-to-cart">Añadir al Carrito</button>
+                <div class="product-card bg-white p-6 rounded-md shadow-lg hover:shadow-2xl transition duration-300">
+                    <img src="{% static 'images/product1.jpg' %}" alt="{{ product.name }}" class="w-full h-48 object-cover rounded-md mb-4">
+                    <h3 class="text-xl font-semibold">{{ product.name }}</h3>
+                    <p class="text-gray-600">{{ product.description }}</p>
+                    <span class="block text-orange-500 mt-2 text-lg">${{ product.price }}</span>
+                    <button class="bg-blue-600 text-white py-2 px-4 mt-4 rounded-md hover:bg-blue-700">Añadir al Carrito</button>
                 </div>
             {% empty %}
-                <p>No hay productos disponibles.</p>
+                <p>No hay productos disponibles en este momento.</p>
             {% endfor %}
         </div>
     </section>
 
     <!-- Pie de página -->
-    <footer>
+    <footer class="bg-blue-900 text-white text-center py-6">
         <p>&copy; 2025 Mi Tienda Online. Todos los derechos reservados.</p>
+        <div class="social-links mt-4">
+            <a href="#" class="text-white mx-2 hover:text-gray-300">Facebook</a>
+            <a href="#" class="text-white mx-2 hover:text-gray-300">Twitter</a>
+            <a href="#" class="text-white mx-2 hover:text-gray-300">Instagram</a>
+        </div>
     </footer>
 
     <!-- Scripts -->
-    <script src="{% static 'js/app.js' %}"></script> <!-- Enlace a JavaScript -->
+    <script src="{% static 'js/app.js' %}"></script>
 </body>
+
 </html>
