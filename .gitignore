@@ -1,0 +1,7 @@
+# Ignorar los archivos de caché de Python
+__pycache__/
+*.pyc
+
+# Ignorar archivos temporales u otros archivos generados automáticamente
+*.log
+*.tmp
