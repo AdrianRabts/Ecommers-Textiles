@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Productos</title>
+    {% load static %} <!-- Cargar la etiqueta estática -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> <!-- Enlace a CSS -->
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="/">Mi Tienda Online</a>
+            </div>
+            <ul class="navbar-menu">
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/productos/">Productos</a></li>
+                <li><a href="/carrito/">Carrito</a></li>
+                <li><a href="/contacto/">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Filtro de productos -->
+    <section class="filters">
+        <div class="search">
+            <label for="search">Buscar productos:</label>
+            <input type="text" id="search" placeholder="Buscar productos...">
+        </div>
+        <div class="categories">
+            <h3>Categorías</h3>
+            <ul>
+                <li><a href="#">Ropa</a></li>
+                <li><a href="#">Tecnología</a></li>
+                <li><a href="#">Accesorios</a></li>
+                <li><a href="#">Hogar</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Lista de productos -->
+    <section class="product-list">
+        <h2>Productos Disponibles</h2>
+        <div class="products-container">
+            {% for product in products %}
+                <div class="product-card">
+                    <img src="{% static 'images/product1.jpg' %}" alt="{{ product.name }}" class="product-image">
+                    <h3>{{ product.name }}</h3>
+                    <p class="product-description">{{ product.description }}</p>
+                    <span class="product-price">${{ product.price }}</span>
+                    <button class="add-to-cart">Añadir al Carrito</button>
+                </div>
+            {% empty %}
+                <p>No hay productos disponibles.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>&copy; 2025 Mi Tienda Online. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{% static 'js/app.js' %}"></script> <!-- Enlace a JavaScript -->
+</body>
+</html>
